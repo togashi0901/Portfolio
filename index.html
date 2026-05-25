@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冨樫 大和 / Togashi Yamato - Portfolio</title>
+<meta name="description" content="冨樫大和のポートフォリオサイト。エンジニア志望の大学生。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #10B981;
+    --accent-dark: #059669;
+    --accent-light: #ECFDF5;
+    --text-main: #1F2937;
+    --text-sub: #6B7280;
+    --text-muted: #9CA3AF;
+    --bg: #FFFFFF;
+    --bg-soft: #F9FAFB;
+    --border: #E5E7EB;
+    --max-width: 960px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-main);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header / Nav */
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+  nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-logo {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo .accent { color: var(--accent); }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    color: var(--text-sub);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Sections */
+  section {
+    padding: 96px 0 32px;
+  }
+  .section-title {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .section-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 48px;
+    letter-spacing: -0.02em;
+  }
+
+  /* Hero */
+  #hero {
+    padding: 120px 0 80px;
+    text-align: left;
+  }
+  .hero-name {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .hero-name-en {
+    font-size: 1.2rem;
+    color: var(--text-sub);
+    font-weight: 500;
+    margin-bottom: 32px;
+    letter-spacing: 0.02em;
+  }
+  .hero-lead {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 16px;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-sub);
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+  .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    background: var(--bg);
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  .btn-primary:hover {
+    background: var(--accent-dark);
+    color: white;
+    border-color: var(--accent-dark);
+  }
+
+  /* About */
+  .about-text {
+    font-size: 1.02rem;
+    line-height: 1.95;
+    color: var(--text-main);
+  }
+  .about-text p { margin-bottom: 16px; }
+  .about-text p:last-child { margin-bottom: 0; }
+
+  /* Skills */
+  .skills-group { margin-bottom: 36px; }
+  .skills-category {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-sub);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.04em;
+  }
+  .skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .skill-item {
+    background: var(--bg-soft);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .skill-name {
+    font-weight: 600;
+    font-size: 0.98rem;
+    margin-bottom: 2px;
+  }
+  .skill-exp {
+    font-size: 0.82rem;
+    color: var(--text-sub);
+  }
+  .ai-tools-note {
+    background: var(--accent-light);
+    border-radius: 8px;
+    padding: 18px 20px;
+    font-size: 0.92rem;
+    color: var(--text-main);
+    margin-top: 8px;
+    line-height: 1.7;
+  }
+  .ai-tools-note strong { color: var(--accent-dark); }
+
+  /* Works */
+  .work-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .work-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+  .work-image {
+  width: 100%;
+  background: var(--bg-soft);          /* ← ① 背景色 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-dark);
+  font-size: 0.9rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  padding: 16px;                        /* ← ② 画像の周りの余白 */
+  min-height: 200px;                    /* ← ③ 最小の高さ */
+}
+.work-image img {
+  max-width: 100%;
+  max-height: 480px;                    /* ← ④ 画像の最大の高さ */
+  width: auto;
+  height: auto;
+  object-fit: contain;                  /* ← ⑤ 表示方法 */
+  border-radius: 4px;                   /* ← ⑥ 画像の角丸 */
+}
+  .work-body { padding: 32px; }
+  .work-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .work-sub {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .work-section { margin-bottom: 20px; }
+  .work-section:last-child { margin-bottom: 0; }
+  .work-section-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .work-section-content {
+    font-size: 0.96rem;
+    line-height: 1.85;
+    color: var(--text-main);
+  }
+  .work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .tag {
+    background: var(--bg-soft);
+    color: var(--text-main);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+  }
+  .work-highlights { padding-left: 0; list-style: none; }
+  .work-highlights li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.8;
+  }
+  .work-highlights li:last-child { border-bottom: none; padding-bottom: 0; }
+  .work-highlights strong {
+    display: block;
+    color: var(--accent-dark);
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+  }
+  .work-resources {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .work-note {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    background: var(--bg-soft);
+    padding: 12px 16px;
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+    margin-top: 8px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .work-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+  .work-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .work-link:hover {
+    background: var(--accent);
+    color: white;
+  }
+
+  /* Activities */
+  .activity-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    border-left: 4px solid var(--accent);
+  }
+  .activity-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .activity-sub {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .activity-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 18px;
+    background: var(--bg-soft);
+    border-radius: 8px;
+  }
+  .meta-item .meta-label {
+    font-size: 0.75rem;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .meta-item .meta-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .meta-item .meta-highlight {
+    color: var(--accent-dark);
+    font-weight: 700;
+  }
+
+  /* Contact */
+  #contact {
+    padding-bottom: 64px;
+  }
+  .contact-lead {
+    color: var(--text-sub);
+    margin-bottom: 32px;
+    font-size: 1rem;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .contact-item {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s;
+  }
+  .contact-item:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    transform: translateY(-2px);
+  }
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-label {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+  .contact-value {
+    font-weight: 500;
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero-name { font-size: 2.5rem; }
+    .hero-lead { font-size: 1.1rem; }
+    .section-heading { font-size: 1.6rem; margin-bottom: 32px; }
+    section { padding: 64px 0 24px; }
+    #hero { padding: 80px 0 48px; }
+    .work-body { padding: 24px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#hero" class="nav-logo">冨樫 大和 <span class="accent">.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#works">Works</a>
+      <a href="#activities">Activities</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="container">
+    <h1 class="hero-name">冨樫 大和</h1>
+    <div class="hero-name-en">Yamato Togashi</div>
+    <p class="hero-lead">「面白そう」が原動力の、Webエンジニア志望の大学生。</p>
+    <p class="hero-sub">新しいことを学んで、誰かと話すのが好き。<br>日々の発見をプロダクトに変えていく学生です。</p>
+    <div class="hero-buttons">
+      <a href="#works" class="btn btn-primary">View Works</a>
+      <a href="#about" class="btn">About</a>
+      <a href="#contact" class="btn">Contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="fade-in">
+  <div class="container">
+    <div class="section-title">About</div>
+    <h2 class="section-heading">自己紹介</h2>
+    <div class="about-text">
+      <p>開志専門職大学 情報学部 情報学科の4年生です。</p>
+      <p>エンジニアを志したきっかけは、高校時代に取り組んだシステム制作の授業でした。技術そのものよりも、<strong>「顧客と話しながら要件や必要な機能を一緒に決めていく工程」</strong>に強く惹かれ、ものづくりの面白さを知りました。</p>
+      <p>現在はWebアプリ開発を中心に、フロント・バックの両方を学んでいます。興味のある領域はアプリ開発・UX・メタバースで、目標は「ユーザーを感動させられるプロダクト」を作れるエンジニアになること。</p>
+      <p>性格はとにかく好奇心旺盛で、新しいこと・面白いことを日々探しています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="fade-in">
+  <div class="container">
+    <div class="section-title">Skills</div>
+    <h2 class="section-heading">技術スタック</h2>
+
+    <div class="skills-group">
+      <div class="skills-category">Frontend ─ </div>
+      <div class="skills-list">
+        <div class="skill-item">
+          <div class="skill-name">Angular</div>
+          <div class="skill-exp">インターン（450時間）</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">React</div>
+          <div class="skill-exp">インターン（150時間）</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">TypeScript</div>
+          <div class="skill-exp">インターン（450時間）</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-exp">インターン（450時間）</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">HTML / CSS</div>
+          <div class="skill-exp">両方のインターンで使用</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-category">Backend</div>
+      <div class="skills-list">
+        <div class="skill-item">
+          <div class="skill-name">Express</div>
+          <div class="skill-exp">インターン（150時間）</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Node.js</div>
+          <div class="skill-exp">Expressと併用</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">C#</div>
+          <div class="skill-exp">インターン（150時間）</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Python</div>
+          <div class="skill-exp">個人開発・学習</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Java</div>
+          <div class="skill-exp">高校3年間で学習</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-category">Database ─ 授業・個人開発で使用</div>
+      <div class="skills-list">
+        <div class="skill-item"><div class="skill-name">MySQL</div></div>
+        <div class="skill-item"><div class="skill-name">PostgreSQL</div></div>
+        <div class="skill-item"><div class="skill-name">Firebase</div></div>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-category">Other / Tools</div>
+      <div class="skills-list">
+        <div class="skill-item">
+          <div class="skill-name">Unity</div>
+          <div class="skill-exp">メタバースワールド制作・イベント運営実績</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Git / GitHub</div>
+          <div class="skill-exp">授業・ポートフォリオ運用</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- Works -->
+<section id="works" class="fade-in">
+  <div class="container">
+    <div class="section-title">Works</div>
+    <h2 class="section-heading">制作物</h2>
+
+    <!-- Work #1: AI Care Record -->
+    <article class="work-card">
+      <div class="work-image">
+        <img src="images/work1.png" alt="AIケア記録要約システムの画面">
+      </div>
+      <div class="work-body">
+        <h3 class="work-title">AIケア記録要約システム</h3>
+        <p class="work-sub">ケアマネジャーの記録要約業務を、AIで大幅に効率化</p>
+
+        <div class="work-section">
+          <div class="work-section-label">Overview</div>
+          <div class="work-section-content">
+            ケアマネジャーが行う「利用者の介護記録をまとめ、ご家族へ伝える」業務を支援するシステム。日々の介護記録やケアプランをもとに、全体の総括・状態の推移・項目別評価（健康管理／医療処置／食事／排泄／入浴／睡眠／アクティビティ）を自動生成し、家族向けの報告書まで出力できます。
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Tech Stack</div>
+          <div class="work-tags">
+            <span class="tag">Angular</span>
+            <span class="tag">Express</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">OpenAI API</span>
+            <span class="tag">GitHub Copilot</span>
+            <span class="tag">Gemini</span>
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Role / Period</div>
+          <div class="work-section-content">
+            450時間の長期インターン ／ インターン生2名（環境構築・テストデータ作成は企業様、メイン開発は一人で担当）
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Highlights</div>
+          <ul class="work-highlights">
+            <li>
+              <strong>業務量の大幅削減</strong>
+              ケアマネジャーが利用者一人につき膨大な情報を手作業でまとめる工程をAIに任せることで、作業時間を大きく短縮した。
+            </li>
+            <li>
+              <strong>AIの誤情報を防ぐ精度設計</strong>
+              要約が不正確だと現場の混乱を招くため、AIに渡す前のデータ整形・プロンプトによる厳密なルール付け・出力制御に注力し、「事実に基づいた情報のみ抽出」する仕組みを構築した。
+            </li>
+          </ul>
+        </div>
+
+        <div class="work-section work-resources">
+          <div class="work-section-label">Resources</div>
+          <div class="work-note">お手数ですが、こちらのURLから「株式会社トラス・テック」のポスターをお選びください。</div>
+          <div class="work-links">
+            <a class="work-link" href="https://kpu-wil.notion.site/2025-1b749e82fe1e80ddb7eecdf8f3a89db8" target="_blank" rel="noopener">ポスターセッション資料を見る</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Work #2: Employee Registration -->
+    <article class="work-card">
+      <div class="work-image">
+        <img src="images/work2.png" alt="社員登録Webアプリの新規登録画面">
+      </div>
+      <div class="work-body">
+        <h3 class="work-title">社員登録Webアプリケーション</h3>
+        <p class="work-sub">人事担当向け・社員情報管理システム</p>
+
+        <div class="work-section">
+          <div class="work-section-label">Overview</div>
+          <div class="work-section-content">
+            ウォーターフォール型開発の一連の流れを体験することを目的に、人事担当向けの社員情報管理アプリを開発。「社員一覧」「社員新規登録」「社員情報更新」「社員No変更」の4画面・3機能を実装した。
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Tech Stack</div>
+          <div class="work-tags">
+            <span class="tag">React</span>
+            <span class="tag">C#</span>
+            <span class="tag">MySQL</span>
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Role / Period</div>
+          <div class="work-section-content">
+            150時間（約1ヶ月半）の長期インターン ／ 株式会社ミロク情報サービス様での実習<br>
+            担当工程：要件定義 → 外部設計 → プログラミング → 単体テスト仕様書 → 単体テスト（全工程を一人で完遂）
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Highlights</div>
+          <ul class="work-highlights">
+            <li>
+              <strong>顧客視点を持ったものづくり</strong>
+              架空とはいえ顧客を意識し、要件を必ず満たすこと、スケジュールを守ることを徹底。個人開発では経験できなかった「制約のあるものづくり」を学んだ。
+            </li>
+            <li>
+              <strong>ウォーターフォール型開発の実践</strong>
+              外部設計書を正確に読み取り、ブレなく実装することの重要性を体感。単体テストでは「曖昧な記述や漏れを作らない」ことに注力した。
+            </li>
+            <li>
+              <strong>報告・質問の力が身についた</strong>
+              わからないことを明確にして質問するスキル、進捗をこまめに共有する習慣がついた。
+            </li>
+          </ul>
+        </div>
+
+        <div class="work-section work-resources">
+          <div class="work-section-label">Resources</div>
+          <div class="work-note">お手数ですが、こちらのURLから「株式会社ミロク情報サービス」のポスターをお選びください。</div>
+          <div class="work-links">
+            <a class="work-link" href="https://antique-rib-4d4.notion.site/1934f1a13fad80beb38edaed33a1ed5a?v=1934f1a13fad81919020000c68093b87" target="_blank" rel="noopener">ポスターセッション資料を見る</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Work #3: Metaverse Event -->
+    <article class="work-card">
+      <div class="work-image">
+        <img src="images/work3.png" alt="狐集会 夜桜ワールドの様子">
+      </div>
+      <div class="work-body">
+        <h3 class="work-title">狐集会</h3>
+        <p class="work-sub">「同じアバターコンセプト」をテーマにした、メタバース上の交流イベント</p>
+
+        <div class="work-section">
+          <div class="work-section-label">Overview</div>
+          <div class="work-section-content">
+            同じコンセプト（狐系アバター）を持つユーザー同士の交流の場として企画した、VRChat上のイベント。「夜桜」をテーマにしたオリジナルワールドを制作し、写真撮影と交流を楽しめる空間を作り上げた。
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Tech Stack</div>
+          <div class="work-tags">
+            <span class="tag">Unity 2022.3.22f1</span>
+            <span class="tag">VRChat SDK</span>
+            <span class="tag">VRChat</span>
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Role</div>
+          <div class="work-section-content">
+            企画・運営・集客・ワールド制作・宣伝ポスター作成 ─ すべて個人で実施（準備期間：約1ヶ月）
+          </div>
+        </div>
+
+        <div class="work-section">
+          <div class="work-section-label">Highlights</div>
+          <ul class="work-highlights">
+            <li>
+              <strong>アバター文化に寄り添うワールドデザイン</strong>
+              集まる人のアバターコンセプトが決まっているため、どの雰囲気のアバターにも合う夜桜の世界観を意識。空間サイズも「狭すぎず・広すぎず」、交流と撮影が両立できるバランスを追求した。
+            </li>
+            <li>
+              <strong>パフォーマンス最適化</strong>
+              多人数の同時参加を想定し、ワールドの軽量化に注力。安定した体験を提供できるよう調整した。
+            </li>
+            <li>
+              <strong>「孤立を生まない」動線設計</strong>
+              「話の輪に入れない」状態を防ぐため、参加者の動線を設計：① 入室 → 大きな桜の木の前へ自然に誘導　② 写真撮影＋運営（自分）との会話　③ 既に集まっている人たちへスムーズに案内、という流れで初参加者も馴染めるよう配慮。
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- Activities -->
+<section id="activities" class="fade-in">
+  <div class="container">
+    <div class="section-title">Activities</div>
+    <h2 class="section-heading">活動実績</h2>
+
+    <article class="activity-card">
+      <h3 class="activity-title">🏆 ICPC 国内予選 2025 出場</h3>
+      <p class="activity-sub">国際大学対抗プログラミングコンテスト</p>
+
+      <div class="activity-meta">
+        <div class="meta-item">
+          <div class="meta-label">Team</div>
+          <div class="meta-value">ChronoCasterKTT（3人チーム）</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Result</div>
+          <div class="meta-value"><span class="meta-highlight">全国355チーム中 286位</span><br>新潟県内 2位（1位も同じ大学のチームで284位）</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Language / Role</div>
+          <div class="meta-value">Python ／ 主に問題読解を担当</div>
+        </div>
+      </div>
+
+      <div class="work-section">
+        <div class="work-section-label">参加して得たもの</div>
+        <ul class="work-highlights">
+          <li>
+            <strong>「素のプログラミング力」と向き合う経験</strong>
+            普段はAIや検索を活用しながらコードを書くことが多かったため、それらが使えない環境での開発に強い手応えと課題を感じた。
+          </li>
+          <li>
+            <strong>コーディング力・アルゴリズム力の現在地</strong>
+            時間制限下で問題を解く中で、自分の地力に対する不足を率直に認識。今後の学習の指針になった。
+          </li>
+          <li>
+            <strong>チームで考える楽しさ</strong>
+            友人と問題を読み解き、議論しながら答えに近づいていく競技プログラミングの面白さに触れた。
+          </li>
+        </ul>
+      </div>
+
+      <div class="work-section" style="margin-top: 20px;">
+        <div class="work-section-label">Next Goal</div>
+        <div class="work-section-content">2026年大会では、より上位を目指してリベンジ予定。</div>
+      </div>
+
+      <div class="work-links">
+        <a class="work-link" href="https://icpc.jp/2025/domestic/results/" target="_blank" rel="noopener">ICPC 2025 公式結果ページ</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="fade-in">
+  <div class="container">
+    <div class="section-title">Contact</div>
+    <h2 class="section-heading">連絡先</h2>
+    <p class="contact-lead">お気軽にご連絡ください。</p>
+
+    <div class="contact-grid">
+      <a href="mailto:20123032@kaishi-pu.ac.jp" class="contact-item">
+        <div class="contact-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">20123032@kaishi-pu.ac.jp</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; 2026 Yamato Togashi
+  </div>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
